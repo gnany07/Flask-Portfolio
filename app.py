@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, migrate
+from utils import send_gmail,send_message
 
 import requests
 import re
@@ -81,7 +82,18 @@ def contact_page():
             db.session.add(entry)
             db.session.commit()
             contact_info_included = True
+            #print("Sending gmail to:" + name + " at: " + email + " with message: " + reason)
+            #send_gmail(name, email, reason)
+            #print("Sending message to:" + name + " at: " + phone + " with message: " + reason)
+            #send_message(name, phone, reason)
+            
 
+    # To see all existing contacts
+    '''
+    existing_contacts = db.session.execute(db.select(Contact)).scalars()
+    for contact in existing_contacts:
+        print(contact.name + " " + contact.email + " " + contact.phone + " " + contact.reason)
+    '''
     return render_template('contact.html', title='Contact Page', contact_status=contact_info_included)
 
 
