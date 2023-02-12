@@ -3,7 +3,7 @@
     "builds": [
         {
             "src": "./wsgi.py",
-            "use": "@gnany07/python"
+            "use": "@vercel/python"
         }
     ],
     "routes": [
